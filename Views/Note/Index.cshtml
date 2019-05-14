@@ -1,0 +1,92 @@
+﻿@model IEnumerable<NeYemekYapsam.Entities.Note>
+
+@{
+	ViewBag.Title = "Index";
+}
+
+<div class="row">
+	<div class="col-md-10 col-md-offset-1">
+		<h2>İncelemeler</h2>
+		<hr />
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-10 col-md-offset-1">
+		<p>
+			@MyBootstrap.LinkButton("/Note/Create", "primary", string.Empty, string.Empty, "plus", "İnceleme Oluştur")
+		</p>
+		<table class="table">
+			<tr>
+				<th>
+					@Html.DisplayNameFor(model => model.Category.Title)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Title)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Text)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.IsDraft)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.LikeCount)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.CreatedOn)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.ModifiedOn)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.ModifiedUsername)
+				</th>
+				<th></th>
+			</tr>
+
+			@foreach (var item in Model)
+			{
+				<tr>
+					<td>
+						@Html.DisplayFor(modelItem => item.Category.Title)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Title)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Text)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.IsDraft)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.LikeCount)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.CreatedOn)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.ModifiedOn)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.ModifiedUsername)
+					</td>
+					<td width="150">
+						<button class="btn btn-success btn-xs" type="button" data-note-id="@item.ID" data-toggle="modal" data-target="#modal_comment">
+							<span class="glyphicon glyphicon-comment"></span>
+						</button>
+						@MyBootstrap.LinkButton("/Note/Edit/" + item.ID, "warning", "btn-xs", "Düzenle", "edit", string.Empty)
+						@MyBootstrap.LinkButton("/Note/Details/" + item.ID, "info", "btn-xs", "Detaylar", "search", string.Empty)
+						@MyBootstrap.LinkButton("/Note/Delete/" + item.ID, "danger", "btn-xs", "Kaldır", "trash", string.Empty)
+
+					</td>
+				</tr>
+			}
+
+		</table>
+</div>
+	</div>
+		@MyBootstrap.ModalPopup(id: "modal_comment", title: "Yorumlar")
+
+		<script src="~/Scripts/comment.js"></script>

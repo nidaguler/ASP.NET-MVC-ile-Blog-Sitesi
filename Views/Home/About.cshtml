@@ -1,0 +1,60 @@
+﻿
+@{
+	ViewBag.Title = "About";
+}
+
+<link href="~/Content/shop-homepage.css" rel="stylesheet" />
+
+<link href="~/Content/login-register.css" rel="stylesheet" />
+<div class="container">
+	<div class="row">
+		<div class="col-lg-3">
+			<br />
+			@Html.Partial("_PartialSearch")
+			<div class="col-lg-12">
+				@Html.Partial("_PartialCategories")
+			</div>
+		</div>
+
+
+		<!-- /.col-lg-3 -->
+		<div class="col-lg-6 offset-1">
+			<br />
+			<h2 class="text-center">Hakkımızda</h2>
+
+			<div class="row">
+				<div>
+					<hr />
+					
+					<img src="~/Images/kitapleaks.png" class="center-block img-responsive img-rounded img-thumbnail img-fluid" alt="Alternate Text" />
+				</div>
+
+				<div>
+					<hr />
+					<p>
+						Okumanın insanı güzelleştirdiğine, değiştirdiğine, hayatına bir anlam kattığına inanıyoruz.
+						Bu yüzden hayatı değişen, sorgulayan, düşünen herkes için bir platform oluşturmaya karar verdik.
+						Faydalı olmasını umuyoruz. Çünkü şunu biliyoruz, okumak dünyayı değiştirdi.
+					</p>
+
+					<p>
+						Gitmeden önce bir dinle <span class="fa fa-caret-right"></span><a href="https://youtu.be/DwrHwZyFN7M"> Fast car. </a>
+					</p>
+				
+					
+				</div>
+
+
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.col-lg-9 -->
+	</div>
+	<!-- /.row -->
+</div>
+
+
+
+@section footer{
+	@Html.Partial("_PartialFooter")
+}

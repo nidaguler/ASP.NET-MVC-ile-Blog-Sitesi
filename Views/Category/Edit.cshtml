@@ -1,0 +1,61 @@
+﻿@using NeYemekYapsam
+@model NeYemekYapsam.Entities.Category
+
+@{
+	ViewBag.Title = "Kategorileri Düzenle";
+
+}
+<link href="~/Content/login-register.css" rel="stylesheet" />
+@*<link href="~/Content/shop-homepage.css" rel="stylesheet" />*@
+
+<link href="~/Content/validation-summary.css" rel="stylesheet" />
+
+<br />
+<br />
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<h2>Kategorileri Düzenle</h2>
+		<hr />
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		@using (Html.BeginForm())
+		{
+			@Html.AntiForgeryToken()
+
+			<div class="form-horizontal">
+				@Html.ValidationSummary(false)
+				@Html.HiddenFor(model => model.ID)
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-10">
+						
+						@MyBootstrap.Button("success",string.Empty,"submit", "floppy-save","Kaydet")
+						@MyBootstrap.LinkButton("/Category/Index", "default", string.Empty, string.Empty, "arrow-left","Geri Dön")
+						<br />
+					</div>
+				</div>
+
+
+
+			</div>
+		}
+	</div>
+</div>
+

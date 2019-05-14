@@ -1,0 +1,177 @@
+﻿
+@using NeYemekYapsam.Entities
+@model List<Note>
+
+
+@{
+	ViewBag.Title = "Index";
+}
+
+
+
+<br />
+<div class="container">
+	<div class="row">
+		<div class="col-lg-3">
+			<br />
+			@Html.Partial("_PartialSearch")
+			<div class="col-lg-12">
+				@Html.Partial("_PartialCategories")
+			</div>
+		</div>
+
+
+		<!-- /.col-lg-3 -->
+		<div class="col-lg-9" style="margin-bottom:30px;">
+			<div class="row carousel-holder">
+				<div class="col-md-12">
+					<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+						<ol class="carousel-indicators">
+							<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+							<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+							<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+						</ol>
+						<div class="carousel-inner">
+							<div class="item active">
+								<img class="slide-image" src="http://placehold.it/800x300" alt="">
+							</div>
+							<div class="item">
+								<img class="slide-image" src="http://placehold.it/800x300" alt="">
+							</div>
+							<div class="item">
+								<img class="slide-image" src="http://placehold.it/800x300" alt="">
+							</div>
+						</div>
+						<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+							<span class="glyphicon glyphicon-chevron-left"></span>
+						</a>
+						<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+							<span class="glyphicon glyphicon-chevron-right"></span>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				@foreach (Note note in Model)
+				{
+					<div class="col-sm-4 col-lg-4 col-md-4" data-note-id="@note.ID">
+
+
+						@*<img class="card-img-top" src="http://placehold.it/700x400" alt="@note.Title">*@
+						<div class="thumbnail" style="margin-bottom:auto;height:291px;">
+							<center>
+								<br />
+								<h4 class="card-title">
+
+									<a href="#" data-toggle="modal" data-target="#modal_comment" data-note-id="@note.ID">
+
+										@if (string.IsNullOrEmpty(note.Text) == false && note.Title.Length > 50)
+										{
+											<p><u>@(note.Title.Substring(0, 50))...</u></p>
+
+
+										}
+										else
+										{
+
+											<u>@note.Title</u>
+
+										}
+
+									</a>
+
+
+
+								</h4>
+
+								<a href="/Home/ShowProfile/@note.Owner.ID" role="button" class="btn btn-dark"><span class="fa fa-user" style="color:forestgreen;"></span> @note.Owner.Username</a>
+								@*@if (true)
+								{
+									<button class="buttonNormal">Takip Et</button>
+								}
+								else if (true)
+								{
+									<button class="buttonTakipEdiliyor">Takip Ediliyor</button>
+								}
+								else
+								{
+									<button class="buttonTakibiBirak">Takibi Bırak</button>
+								}*@
+								<br />
+								<span class="fa fa-clock-o"> </span> @note.ModifiedOn.ToString("dd.MM.yy - HH:mm")
+
+								<div class="card-text">
+
+
+
+									@if (string.IsNullOrEmpty(note.Text) == false && note.Text.Length > 40)
+									{
+										<br />
+										<p>@(note.Text.Substring(0, 40))...</p>
+
+										<p class="pull-right">
+											<a href="#" data-toggle="modal" data-target="#modal_notedetail" data-note-id="@note.ID" role="button" class="btn btn-default btn-sm">Daha fazlasını oku <span class="tooltip-arrow"></span></a>
+										</p>
+
+
+									}
+									else
+									{
+										<p>@note.Text</p>
+									}
+
+								</div>
+								<br /><br />
+
+								<hr />
+								<div class="ratings">
+									<p class="pull-right">
+										<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal_comment" data-note-id="@note.ID">
+											<span class="glyphicon glyphicon-comment"></span> Yorumlar
+										</button>
+									</p>
+									<div class="pull-left">
+										<p>
+
+											<button class="btn btn-default btn-sm" type="button" data-liked="false" data-note-id="@note.ID">
+												<span class="fa fa-star-o"></span>&nbsp;
+												<span class="like-count">@note.LikeCount</span>
+											</button>
+										</p>
+									</div>
+
+								</div>
+							</center>
+						</div>
+					</div>
+
+				}
+
+
+
+			</div>
+
+
+		</div>
+
+		<!-- /.row -->
+	</div>
+	
+	<!-- /.col-lg-9 -->
+</div>
+<!-- /.row -->
+
+
+
+@section footer{
+	@Html.Partial("_PartialFooter")
+}
+
+@MyBootstrap.ModalPopup(id: "modal_comment", title: "Yorumlar")
+@MyBootstrap.ModalPopup(id: "modal_notedetail", title: "İnceleme Detayı")
+
+
+<script src="~/Scripts/like.js"></script>
+<script src="~/Scripts/comment.js"></script>
+<script src="~/Scripts/NoteDetailPopup.js"></script>

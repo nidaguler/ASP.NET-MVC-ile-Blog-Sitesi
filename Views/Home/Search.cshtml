@@ -1,0 +1,80 @@
+﻿@model IEnumerable<NeYemekYapsam.Entities.Note>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<link href="~/Content/login-register.css" rel="stylesheet" />
+
+<div class="row">
+
+	<div class="col-md-10 col-md-offset-1">
+		<h2>Aradığınız İçerikteki İncelemeler</h2>
+	
+	</div>
+
+</div>
+
+
+<div class="row">
+	<div class="col-md-10 col-md-offset-1">
+		<table class="table">
+			<tr>
+				<th>
+					@Html.DisplayNameFor(model => model.CreatedOn)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.ModifiedOn)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.ModifiedUsername)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Title)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Text)
+				</th>
+
+				<th></th>
+			</tr>
+
+			@foreach (var item in Model)
+			{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.CreatedOn)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.ModifiedOn)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.ModifiedUsername)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Title)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Text)
+				</td>
+
+				<td width="150">
+
+					@MyBootstrap.LinkButton("/Note/Edit/" + item.ID, "warning", "btn-xs", "Düzenle", "edit", string.Empty)
+
+					@MyBootstrap.LinkButton("/Note/Details/" + item.ID, "info", "btn-xs", "Detay", "search", string.Empty)
+
+					@MyBootstrap.LinkButton("/Note/Delete/" + item.ID, "danger", "btn-xs", "Sil", "trash", string.Empty)
+
+
+
+
+				</td>
+			</tr>
+			}
+
+		</table>
+	</div>
+</div>
+
+

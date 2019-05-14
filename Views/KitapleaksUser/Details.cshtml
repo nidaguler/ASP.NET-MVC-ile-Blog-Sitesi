@@ -1,0 +1,109 @@
+﻿@model NeYemekYapsam.Entities.NeYemekYapsamUser
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<br />
+<br />
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<h2>Kullanıcı Detayı</h2>
+		<hr />
+	</div>
+</div>
+
+<div class="row">
+
+	<div class="col-md-8 col-md-offset-2">
+
+		<div>
+			<dl class="dl-horizontal">
+				<dt>
+					@Html.DisplayNameFor(model => model.Name)
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.Name)
+				</dd>
+
+				<dt>
+					@Html.DisplayNameFor(model => model.Surname)
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.Surname)
+				</dd>
+
+				<dt>
+					@Html.DisplayNameFor(model => model.Username)
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.Username)
+				</dd>
+
+				<dt>
+					@Html.DisplayNameFor(model => model.Email)
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.Email)
+				</dd>
+
+				<dt>
+					@Html.DisplayNameFor(model => model.Password)
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.Password)
+				</dd>
+
+				<dt>
+					@Html.DisplayNameFor(model => model.IsActive)
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.IsActive)
+				</dd>
+
+				<dt>
+					@Html.DisplayNameFor(model => model.IsAdmin)
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.IsAdmin)
+				</dd>
+
+				<dt>
+					@Html.DisplayNameFor(model => model.CreatedOn)
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.CreatedOn)
+				</dd>
+
+				<dt>
+					@Html.DisplayNameFor(model => model.ModifiedOn)
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.ModifiedOn)
+				</dd>
+
+				<dt>
+					@Html.DisplayNameFor(model => model.ModifiedUsername)
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.ModifiedUsername)
+				</dd>
+
+			</dl>
+		</div>
+		<div class="col-md-8 col-md-offset-2">
+
+
+			@MyBootstrap.LinkButton("/KitapleaksUser/Edit/" + @Model.ID, "warning", string.Empty, string.Empty, "edit", "Düzenle")
+			@MyBootstrap.LinkButton("/KitapleaksUser/Index", "default", string.Empty, string.Empty, "arrow-left", "Geri Dön")
+		</div>

@@ -1,0 +1,26 @@
+﻿@using NeYemekYapsam.Models
+@using NeYemekYapsam.Entities
+
+
+
+@{
+
+	List<Category> list = CacheHelper.GetCategoriesFromCache().OrderByDescending(x=>x.Notes.Count()).Take(10).ToList();
+
+}
+
+
+
+
+<div class="list-group">
+	<h3 class="my-4 text-center"><u>Kategoriler</u></h3>
+	@*<a href="/Home/Index" class="list-group-item text-center"><span class="fa fa-align-left"></span> Tümü</a>*@
+
+	@foreach (Category cat in list)
+	{
+		<a href="/Home/ByCategory/@cat.ID" title="@cat.Description" class="list-group-item text-center"><span class="fa fa-arrow-right"></span> @cat.Title (@cat.Notes.Count()) </a>
+	}
+
+
+
+</div>

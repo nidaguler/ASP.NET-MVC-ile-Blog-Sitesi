@@ -1,0 +1,82 @@
+﻿@using NeYemekYapsam
+@model IEnumerable<NeYemekYapsam.Entities.Category>
+
+@{
+	ViewBag.Title = "Kategoriler";
+}
+
+<link href="~/Content/login-register.css" rel="stylesheet" />
+@*<link href="~/Content/shop-homepage.css" rel="stylesheet" />*@
+
+<div class="row">
+	<div class="col-md-10 col-md-offset-1">
+		<h2>Kategoriler</h2>
+		<hr />
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-10 col-md-offset-1">
+		<p>
+			@MyBootstrap.LinkButton("/Category/Create", "primary", string.Empty, string.Empty, "plus", "Kategori Oluştur")
+		</p>
+		<table class="table">
+			<tr>
+				<th>
+					@Html.DisplayNameFor(model => model.Title)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Description)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.CreatedOn)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.ModifiedOn)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.ModifiedUsername)
+				</th>
+				<th></th>
+			</tr>
+
+			@foreach (var item in Model)
+			{
+				<tr>
+					<td>
+						@Html.DisplayFor(modelItem => item.Title)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Description)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.CreatedOn)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.ModifiedOn)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.ModifiedUsername)
+					</td>
+
+					<td width="150">
+
+						@MyBootstrap.LinkButton("/Category/Edit/"+ item.ID ,"warning","btn-xs","Düzenle","edit",string.Empty)
+
+							@MyBootstrap.LinkButton("/Category/Details/" + item.ID,"info","btn-xs","Detay","search",string.Empty)
+
+							@MyBootstrap.LinkButton("/Category/Delete/" + item.ID,"danger","btn-xs","Sil","trash",string.Empty)
+						
+
+
+
+					</td>
+				</tr>
+			}
+
+		</table>
+	</div>
+
+</div>
+
+

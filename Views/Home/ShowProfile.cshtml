@@ -1,0 +1,204 @@
+﻿@using NeYemekYapsam.Entities
+
+@model NeYemekYapsamUser
+
+@{
+	ViewBag.Title = "Profiliniz";
+
+}
+
+
+<link href="~/Content/shop-homepage.css" rel="stylesheet" />
+
+
+<link href="~/Content/login-register.css" rel="stylesheet" />
+<link href="~/Content/Profile/Profile.css" rel="stylesheet" />
+
+<!------ Include the above in your HEAD tag ---------->
+<div class="container emp-profile" style="background: #8e9eab;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #eef2f3, #8e9eab);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #eef2f3, #8e9eab); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+">
+	<form method="post">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="profile-img">
+					<img src="~/Images/@Model.ProfileImageFilename" alt="@Model.Username" />
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="profile-head">
+					<h3 style="color:antiquewhite;">
+						@Model.Username (@Model.Meslek)
+					</h3>
+					
+					<div class="col-md-3">
+						<p class="proile-rating" style="color:antiquewhite;"><span style="border-style:solid;padding:2px;">Notlar : @Model.Notes.Count() </span> <span ></span></p>
+						<p class="proile-rating" style="color:antiquewhite;"><span style="border-style:solid;padding:2px;">Yorumlar : @Model.Comments.Count()</span><span></span> </p>
+						<p class="proile-rating" style="color:antiquewhite;"><span style="border-style:solid;padding:2px;">Beğeniler : @Model.Likes.Count()</span><span></span></p>
+					</div>
+					
+					<div class="col-md-3">
+						<p style="color:antiquewhite;">Linkler</p>
+						<a href="@Model.Twitter">Twitter</a><br />
+						<a href="@Model.Facebook">Facebook</a><br />
+						<a href="@Model.Instagram">Instagram</a>
+					</div>
+					<div class="col-md-3">
+						<p style="color:antiquewhite;">Yetenekler</p>
+						<a href="#">@Model.Yetenekler</a><br />
+					</div>
+						
+
+					
+					@*<p class="proile-rating">Takip Edilenler : <span>@Model.Following.Count()</span></p>
+		<p class="proile-rating">Takipçiler : <span>@Model.Followers.Count()</span></p>*@
+					<ul class="nav nav-tabs" id="myTab" role="tablist">
+						<li class="nav-item">
+							<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Hakkımda</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Yazılar</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			@if (Model.IsAdmin == true)
+			{
+				<div class="col-md-2">
+					@MyBootstrap.LinkButton("/Home/EditProfile/" + @Model.ID, "success", "btn-sm", "Düzenle", "edit", "Düzenle")
+				</div>
+			}
+			
+
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+			
+			</div>
+			<div class="col-md-8">
+				<div class="tab-content profile-tab" id="myTabContent">
+					<div class="tab-pane show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+						<div class="row">
+							<div class="col-md-6">
+								<p>@Model.Hakkımda</p>
+								
+							</div>
+							
+						</div>						
+					</div>
+					<div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+						<div class="row">
+							<div class="col-md-6">
+								@foreach (var item in Model.Notes.Where(x => x.Owner.ID == Model.ID).ToList())
+								{
+
+
+									<p>
+								 
+								<a class="d-block" href="/Note/Index/@item.Owner.ID"> @item.Title</a></p>
+								
+										
+									
+									@*<p>@Model.Notes.Where(x => x.Owner.ID == Model.ID).ToList()</p>*@
+
+								
+								}
+
+							</div>
+							
+						</div>			
+					</div>
+
+				
+				</div>
+				</div>
+			</div>
+</form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<br />
+	<link href="~/Content/shop-homepage.css" rel="stylesheet" />
+
+
+	<link href="~/Content/login-register.css" rel="stylesheet" />*@
+
+@*<div class="container">
+		<br />
+		<div class="row">
+			<h2>@ViewBag.Title</h2>
+
+		</div>
+
+		<div class="row">
+
+			<div class="col-md-2">
+					<img src="~/Images/@Model.ProfileImageFilename" class="img-circle" width="128" height="128" />
+				</div>
+
+			<div class="col-md-5">
+				<ul class="list-group">
+					<li class="list-group-item text-right"><span class="pull-left"><strong class="">Adı Soyadı: </strong></span>@(Model.Name + " " + Model.Surname)</li>
+					<li class="list-group-item text-right"><span class="pull-left"><strong class="">@Html.DisplayNameFor(model => model.Username) </strong></span> @Model.Username</li>
+					<li class="list-group-item text-right"><span class="pull-left"><strong class="">@Html.DisplayNameFor(model => model.Email) </strong></span>@Model.Email</li>
+					<li class="list-group-item text-right"><span class="pull-left"><strong class="">@Html.DisplayNameFor(model => model.Password)  </strong></span> @Model.Password</li>
+				</ul>
+
+				<h5><b>@Html.DisplayNameFor(model => model.Hakkımda) : </b>@Model.Hakkımda</h5>
+					<h5><b>@Html.DisplayNameFor(model => model.Twitter) : </b>@Model.Twitter</h5>
+					<h5><b>@Html.DisplayNameFor(model => model.Facebook) : </b>@Model.Facebook</h5>
+					<h5><b>@Html.DisplayNameFor(model => model.Instagram) : </b>@Model.Instagram</h5>
+				<br />
+
+			</div>
+
+		</div>
+
+		@MyBootstrap.LinkButton("/Home/EditProfile/" + @Model.ID, "warning", "btn-lg", "Düzenle", "edit", "Düzenle")
+
+	</div>*@
+
+

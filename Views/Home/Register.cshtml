@@ -1,0 +1,84 @@
+﻿@using NeYemekYapsam.Entities.ValueObjects
+@model RegisterViewModel
+
+
+@{
+	ViewBag.Title = "Kayıt Sayfası";
+}
+
+@*<link href="~/Content/shop-homepage.css" rel="stylesheet" />*@
+
+<link href="~/Content/login-register.css" rel="stylesheet" />
+<link href="~/Content/validation-Summary.css" rel="stylesheet" />
+
+@using (Html.BeginForm())
+{
+	<br /><br /><br />
+	<div class="container">
+
+
+
+		<div class="row">
+			<div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+
+				<form>
+					<div class="panel panel-default">
+						<div class="panel-heading text-center">
+							<h2>Üye Ol</h2>
+						</div>
+
+
+						<div class="panel-body">
+
+							@Html.ValidationSummary(false)
+							<br />
+							<div class="form-group">
+
+								@Html.TextBoxFor(model => model.Username, new { @class = "form-control", placeholder = "Kullanıcı Adınız: ", autofocus = "autofocus" })
+							</div>
+
+
+							<div class="form-group">
+
+								@Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "Emailiniz: ", })
+							</div>
+
+							<div class="form-group">
+								@Html.TextBoxFor(model => model.Password, new { @class = "form-control", placeholder = "Şifreniz: ", type = "password" })
+							</div>
+
+							<div class="form-group">
+								@Html.TextBoxFor(model => model.RePassword, new { @class = "form-control", placeholder = "Şifre Tekrarı: ", type = "password" })
+							</div>
+
+						</div>
+						<div class="panel-footer text-right">
+
+
+							<button type="submit" class="btn btn-success" href="Home/Login">
+								<span class="glyphicon glyphicon-log-in"></span> Kayıt Ol
+							</button>
+
+						</div>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

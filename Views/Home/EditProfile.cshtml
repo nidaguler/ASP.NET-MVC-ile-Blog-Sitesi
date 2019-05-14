@@ -1,0 +1,140 @@
+﻿@using NeYemekYapsam.Entities
+@model NeYemekYapsamUser
+@{
+	ViewBag.Title = "Profil Düzenle";
+}
+
+<link href="~/Content/validation-summary.css" rel="stylesheet" />
+<link href="~/Content/shop-homepage.css" rel="stylesheet" />
+
+
+
+<link href="~/Content/login-register.css" rel="stylesheet" />
+<div class="container">
+
+	<div class="row">
+		<h2>@ViewBag.Title</h2>
+		<hr />
+	</div>
+	
+	<div class="row">
+		@using (Html.BeginForm("EditProfile","Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+		{
+			<div class="form-horizontal">
+
+
+				@*<div class="col-md-3">
+					<img src="~/Images/@Model.ProfileImageFilename" class="img-circle" width="128" height="128" />
+					@Html.HiddenFor(model => model.ProfileImageFilename)
+					<br /><br />
+					<input type="file" name="ProfileImage" id="ProfileImage" class="form-control" /><br />
+					<span class="glyphicon glyphicon-info-sign">&nbsp;</span>
+					<span><i>Lütfen jpg, jpeg ya da png formatı kullanın.</i></span>
+				</div>*@
+
+				<div class="col-md-12">
+
+					@Html.ValidationSummary(false)
+					@Html.HiddenFor(model => model.ID)
+					
+					<div class="form-group">
+						@Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-4" })
+						<div class="col-md-8">
+							
+							@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+						</div>
+					</div>
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.Surname, htmlAttributes: new { @class = "control-label col-md-4" })
+						<div class="col-md-8">
+							@Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control" } })
+						</div>
+					</div>
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-4" })
+						<div class="col-md-8">
+							@Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control", required="required" } })
+						</div>
+					</div>
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-4" })
+						<div class="col-md-8">
+							@Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", type = "password", required = "required" } })
+						</div>
+					</div>
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-4" })
+						<div class="col-md-8">
+							@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", type = "Email", required = "required" } })
+						</div>
+					</div>
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.ProfileImageFilename,"Fotoğraf:", htmlAttributes: new { @class = "control-label col-md-4" })
+						<div class="col-md-8">
+							<input type="file" name="ProfileImageName" value="ProfileImageName" id="ProfileImageName" accept=".jpg,.png,.jpeg,.JPEG" placeholder=".jpg,.png,.jpeg,.JPEG formatında bir fotoğraf seçiniz.." />
+							@Html.EditorFor(model => model.ProfileImageFilename, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.Hakkımda, htmlAttributes: new { @class = "control-label col-md-4" })
+						<div class="col-md-8">
+							@Html.EditorFor(model => model.Hakkımda, new { htmlAttributes = new { @class = "form-control" } })
+						</div>
+					</div>
+					<div class="form-group">
+						@Html.LabelFor(model => model.Yetenekler, htmlAttributes: new { @class = "control-label col-md-4" })
+						<div class="col-md-8">
+							@Html.EditorFor(model => model.Yetenekler, new { htmlAttributes = new { @class = "form-control" } })
+						</div>
+					</div>
+					<div class="form-group">
+						@Html.LabelFor(model => model.Meslek, htmlAttributes: new { @class = "control-label col-md-4" })
+						<div class="col-md-8">
+							@Html.EditorFor(model => model.Meslek, new { htmlAttributes = new { @class = "form-control" } })
+						</div>
+					</div>
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.Twitter, htmlAttributes: new { @class = "control-label col-md-4" })
+						<div class="col-md-8">
+							@Html.EditorFor(model => model.Twitter, new { htmlAttributes = new { @class = "form-control" } })
+						</div>
+					</div>
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.Facebook, htmlAttributes: new { @class = "control-label col-md-4" })
+						<div class="col-md-8">
+							@Html.EditorFor(model => model.Facebook, new { htmlAttributes = new { @class = "form-control" } })
+						</div>
+					</div>
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.Instagram, htmlAttributes: new { @class = "control-label col-md-4" })
+						<div class="col-md-8">
+							@Html.EditorFor(model => model.Instagram, new { htmlAttributes = new { @class = "form-control" } })
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-md-offset-4 col-md-8">
+							<input type="submit" value="Kaydet" class="btn btn-success" />
+							@Html.ActionLink("İptal", "ShowProfile", "Home", null, new { @class = "btn btn-default" })
+						</div>
+					</div>
+
+				</div>
+
+
+
+			</div>
+		}
+	</div>
+
+</div>
